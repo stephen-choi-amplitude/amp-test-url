@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./App.css";
 
@@ -16,10 +17,10 @@ for (const path of Object.keys(pages)) {
 
   routes.push({
     path: fileName === "index" ? "/" : `/${normalizedPathName.toLowerCase()}`,
-    Element: pages[path].default,
-    loader: pages[path]?.loader,
-    action: pages[path]?.action,
-    ErrorBoundary: pages[path]?.ErrorBoundary,
+    Element: (pages[path] as any).default,
+    loader: (pages[path] as any)?.loader,
+    action: (pages[path] as any)?.action,
+    ErrorBoundary: (pages[path] as any)?.ErrorBoundary,
   });
 }
 
